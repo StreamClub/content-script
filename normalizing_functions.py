@@ -13,13 +13,9 @@ def normalize_date(x, max):
   else:
     return 0
   
-def pivot_genres(df):
-    unique_genre_ids = set()
-    for genre_ids in df['genre_ids']:
-        unique_genre_ids.update(genre_ids)
-
+def pivot_genres(df, genres):
     # Create binary columns for each genre ID
-    for genre_id in unique_genre_ids:
+    for genre_id in genres:
         df[genre_id] = df['genre_ids'].apply(lambda x: 1 if genre_id in x else 0)
 
     # Drop the original 'genre_ids' column

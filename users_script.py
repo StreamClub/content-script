@@ -24,6 +24,6 @@ if __name__ == "__main__":
     df = pd.read_csv("./movies.csv")
     filtered_df = df[df['id'].isin(movies_ids)]
     user_array = filtered_df.drop(['id'], axis=1).sum().values
-    user_array = [x / 3 for x in user_array]
+    user_array = [x / 3 for x in user_array] #TODO: deshardcodear
     recomendations = find_n_closest_to_user(df[~df['id'].isin(movies_ids)], user_array, n)
     print(recomendations)

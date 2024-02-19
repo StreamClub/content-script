@@ -35,7 +35,8 @@ def get_movies(start_date, end_date):
 
 def format_dataset(df, genres):
     df = df.loc[:,['id', 'genre_ids', 'vote_average', 'release_date']]
-    df['release_date'] = df['release_date'].apply(lambda x: normalize_date(x, df['release_date'].max()))
+    #TODO: REVISAR TEMA DE FECHAS CON PAGINADO (HARDCODEAR POR UN ANO ALTO: 2030)
+    df['release_date'] = df['release_date'].apply(lambda x: normalize_date(x, df['release_date'].max())) #TODO: RELEASE DATE NO! USAR ANO
     df['vote_average'] = df['vote_average'].apply(normalize_vote)
     return pivot_genres(df, genres)
 

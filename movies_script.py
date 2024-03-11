@@ -1,4 +1,5 @@
 import pandas as pd
+from movies import get_movie_details_for_id
 from normalizing_functions import *
 from api_calls import *
 import os
@@ -6,39 +7,26 @@ import sys
 import csv
 
 def get_movies(start_date, end_date):
-    (df, pages) = get_page(1, start_date, end_date)
+    (ids, pages) = get_page(1, start_date, end_date)
     header = not os.path.exists('movies.csv')
-    genres = get_genres()
-    for page in range(2, pages):
-        if (page % 20 == 0):
-            df = format_dataset(df, genres)
+    df = get_movie_details_for_id(ids)
+    print(f"TOTAL PAGES: {pages}")
+    for page in range(2, pages + 1):
+        try:
+            (ids, _) = get_page(page, start_date, end_date)
+            aux = get_movie_details_for_id(ids)
+        except:
+            print(f"WRITTEN UNTIL {int((page / pages) * 100)}%")
+            log_execution(start_date, end_date, False, page-1)
+            return -1
+        df = pd.concat([df, aux], ignore_index=True)
+        if (page % 5 == 0):
             df.to_csv('movies.csv', index=False, mode='a', header=header)
+            df = pd.DataFrame()
             header = False
             print(f"Processing: {int((page / pages) * 100)}%")
-            try:
-                (df, _) = get_page(page, start_date, end_date)
-            except:
-                print(f"WRITTEN UNTILL {int((page / pages) * 100)}%")
-                log_execution(start_date, end_date, False, page-1)
-                return -1
-        else:
-            try:
-                (aux, _) = get_page(page, start_date, end_date)
-            except:
-                print(f"WRITTEN UNTILL {int((page / pages) * 100)}%")
-                log_execution(start_date, end_date, False, page-1)
-                return -1
-            df = pd.concat([df, aux], ignore_index=True)
-    df = format_dataset(df, genres)
     df.to_csv('movies.csv', index=False, mode='a', header=header)
     return 0
-
-def format_dataset(df, genres):
-    df = df.loc[:,['id', 'genre_ids', 'vote_average', 'release_date']]
-    #TODO: REVISAR TEMA DE FECHAS CON PAGINADO (HARDCODEAR POR UN ANO ALTO: 2030)
-    df['release_date'] = df['release_date'].apply(lambda x: normalize_date(x, df['release_date'].max())) #TODO: RELEASE DATE NO! USAR ANO
-    df['vote_average'] = df['vote_average'].apply(normalize_vote)
-    return pivot_genres(df, genres)
 
 def log_execution(start_date, end_date, success, page_number = 0):
     csv_filename = "executions.csv"
@@ -61,6 +49,7 @@ if __name__ == "__main__":
     start_date = sys.argv[1]
     end_date = sys.argv[2]
     start_time = time.time()
+    print("START PROCESSING...")
     res = get_movies(start_date, end_date)
     if res == 0:
         end_time = time.time()

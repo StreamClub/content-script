@@ -18,15 +18,22 @@ cur = conn.cursor()
 # Execute SQL commands to retrieve the current time and version from PostgreSQL
 with open('uploads/recommendations.csv', 'r') as file:
   reader = csv.DictReader(file, delimiter=',')
-  for row in reader:
-    movie_id = int(row['Id'])
-    recommendations = row['recommendations']
-    query = f"INSERT INTO movie_movie_recommendation (Id, recommendations) VALUES ({movie_id}, '{recommendations}')"
-    cur.execute(query)
+  print("Started...")
+  for idx, row in enumerate(reader, start=1):
+    try:
+      movie_id = int(row['Id'])
+      recommendations = row['recommendations']
+      query = f"INSERT INTO movie_movie_recommendation (Id, recommendations) VALUES ({movie_id}, '{recommendations}')"
+      cur.execute(query)
+      conn.commit()
+    except Exception as error:
+      print(f"Failed for id: {row['Id']}, because: {error}.\n Rollback...")
+      conn.rollback()
+    if(idx%100 == 0):
+      print(f"Progress.... on line {idx}")
 
-# Commit the transaction
-conn.commit()
-
+print("Done processing, closing connections...")
 # Close the cursor and connection
 cur.close()
 conn.close()
+print("Done!")

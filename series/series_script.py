@@ -1,20 +1,19 @@
+import time
 import pandas as pd
-from movies import get_movie_details_for_id
-from normalizing_functions import *
-from api_calls import *
 import os
 import sys
 import csv
+from api_calls import get_page
 
-def get_movies(start_date, end_date):
+def get_series(start_date, end_date):
     (ids, pages) = get_page(1, start_date, end_date)
     header = not os.path.exists('movies.csv')
-    df = get_movie_details_for_id(ids)
+    #df = get_series_details_for_id(ids)
     print(f"TOTAL PAGES: {pages}")
-    for page in range(2, pages + 1):
+    """ for page in range(2, pages + 1):
         try:
             (ids, _) = get_page(page, start_date, end_date)
-            aux = get_movie_details_for_id(ids)
+            aux = get_series_details_for_id(ids)
         except:
             print(f"WRITTEN UNTIL {int((page / pages) * 100)}%")
             log_execution(start_date, end_date, False, page-1)
@@ -25,7 +24,7 @@ def get_movies(start_date, end_date):
             df = pd.DataFrame()
             header = False
             print(f"Processing: {int((page / pages) * 100)}%")
-    df.to_csv('movies.csv', index=False, mode='a', header=header)
+    df.to_csv('movies.csv', index=False, mode='a', header=header) """
     return 0
 
 def log_execution(start_date, end_date, success, page_number = 0):
@@ -44,13 +43,13 @@ def log_execution(start_date, end_date, success, page_number = 0):
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Uso: python3 movies_script.py start_date end_date")
+        print("Uso: python3 series_script.py start_date end_date")
         sys.exit(1)
     start_date = sys.argv[1]
     end_date = sys.argv[2]
     start_time = time.time()
     print("START PROCESSING...")
-    res = get_movies(start_date, end_date)
+    res = get_series(start_date, end_date)
     if res == 0:
         end_time = time.time()
         execution_time_seconds = end_time - start_time

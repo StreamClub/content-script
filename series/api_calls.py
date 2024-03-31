@@ -31,7 +31,7 @@ def get_page(page, start_date, end_date):
             return None, None
 
 def get_series_details(id):
-    url = f"https://api.themoviedb.org/3/movie/{id}?language=en-US"
+    url = f"https://api.themoviedb.org/3/tv/{id}?language=en-US"
     headers = {
         "accept": "application/json",
         "Authorization": "Bearer " + os.getenv("TMDB_API_KEY")

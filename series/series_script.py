@@ -4,13 +4,14 @@ import os
 import sys
 import csv
 from api_calls import get_page
+from series import get_series_details_for_id
 
 def get_series(start_date, end_date):
     (ids, pages) = get_page(1, start_date, end_date)
-    header = not os.path.exists('movies.csv')
-    #df = get_series_details_for_id(ids)
+    header = not os.path.exists('series.csv')
     print(f"TOTAL PAGES: {pages}")
-    """ for page in range(2, pages + 1):
+    df = get_series_details_for_id(ids)
+    for page in range(2, pages + 1):
         try:
             (ids, _) = get_page(page, start_date, end_date)
             aux = get_series_details_for_id(ids)
@@ -20,21 +21,21 @@ def get_series(start_date, end_date):
             return -1
         df = pd.concat([df, aux], ignore_index=True)
         if (page % 5 == 0):
-            df.to_csv('movies.csv', index=False, mode='a', header=header)
+            df.to_csv('series.csv', index=False, mode='a', header=header)
             df = pd.DataFrame()
             header = False
             print(f"Processing: {int((page / pages) * 100)}%")
-    df.to_csv('movies.csv', index=False, mode='a', header=header) """
+    df.to_csv('series.csv', index=False, mode='a', header=header)
     return 0
 
 def log_execution(start_date, end_date, success, page_number = 0):
-    csv_filename = "executions.csv"
+    csv_filename = "series_executions.csv"
     header = ["Start Date", "End Date", "Date", "Success", "Page Number"]
     if success:
         data = [[start_date, end_date, time.time(), "True", page_number]]
     else:
         data = [[start_date, end_date, time.time(), "True", page_number]]
-    exists = os.path.exists('executions.csv')
+    exists = os.path.exists('series_executions.csv')
     with open(csv_filename, mode='a', newline='') as file:
         writer = csv.writer(file)
         if(not exists):

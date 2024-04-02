@@ -1,4 +1,5 @@
 import os
+import sys
 import psycopg2
 import csv
 from dotenv import load_dotenv
@@ -16,24 +17,31 @@ conn = psycopg2.connect(connection_string)
 cur = conn.cursor()
 
 # Execute SQL commands to retrieve the current time and version from PostgreSQL
-with open('uploads/recommendations.csv', 'r') as file:
-  reader = csv.DictReader(file, delimiter=',')
-  print("Started...")
-  for idx, row in enumerate(reader, start=1):
-    try:
-      movie_id = int(row['Id'])
-      recommendations = row['recommendations']
-      query = f"INSERT INTO movie_movie_recommendation (Id, recommendations) VALUES ({movie_id}, '{recommendations}')"
-      cur.execute(query)
-      conn.commit()
-    except Exception as error:
-      print(f"Failed for id: {row['Id']}, because: {error}.\n Rollback...")
-      conn.rollback()
-    if(idx%100 == 0):
-      print(f"Progress.... on line {idx}")
+def upload_recommendations(type):
+  with open(f'{type}_recommendations.csv', 'r') as file:
+    reader = csv.DictReader(file, delimiter=',')
+    print(f"Started uploading {type}...")
+    for idx, row in enumerate(reader, start=1):
+      try:
+        id = int(row['Id'])
+        recommendations = row['recommendations']
+        query = f"INSERT INTO {type}_{type}_recommendation (Id, recommendations) VALUES ({id}, '{recommendations}')"
+        cur.execute(query)
+        conn.commit()
+      except Exception as error:
+        print(f"Failed for id: {row['Id']}, because: {error}.\n Rollback...")
+        conn.rollback()
+      if(idx%100 == 0):
+        print(f"Progress.... on line {idx}")
 
-print("Done processing, closing connections...")
-# Close the cursor and connection
-cur.close()
-conn.close()
-print("Done!")
+if __name__ == "__main__":
+  if len(sys.argv) != 2:
+      print("Uso: python3 upload_recommendations.py (movie or series)")
+      sys.exit(1)
+  type = sys.argv[1]
+  upload_recommendations(type)
+  print("Done processing, closing connections...")
+  # Close the cursor and connection
+  cur.close()
+  conn.close()
+  print("Done!")

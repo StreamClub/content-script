@@ -1,0 +1,14 @@
+contentType,updatedAt,id,hasReview,liked,totalWatchedEpisodes,lastSeenEpisode,poster,title,seen
+series,2024-03-11T13:42:25.762Z,37854,True,True,1.0,"{'seasonId': 21, 'episodeId': 1020}",/6nyfkXDGngwY6PCW58n7CHQ2aMt.jpg,One Piece,0.09074410163339383
+series,2024-03-10T18:52:11.652Z,1412,True,False,170.0,"{'seasonId': 1, 'episodeId': 23}",/gKG5QGz5Ngf8fgWpBsWtlg5L2SF.jpg,Arrow,100.0
+movie,2024-03-10T18:51:19.737Z,447362,True,True,,,/xGDbQI7Gtgurt9W5ez6Tim2lpS2.jpg,Toda una vida en un año,
+series,2024-03-03T18:14:04.362Z,71194,False,False,1.0,"{'seasonId': 2, 'episodeId': 3}",/1bOVzxyHALVrC93EDkiF2LESSTg.jpg,The King's Avatar,4.0
+series,2024-03-01T19:13:30.467Z,82452,False,True,8.0,"{'seasonId': 1, 'episodeId': 8}",/fNTCUwpN6c8vD2U36tQW2V9A0Nj.jpg,Avatar: La leyenda de Aang,100.0
+series,2024-02-28T20:55:13.688Z,96228,False,False,8.0,"{'seasonId': 1, 'episodeId': 8}",/e95fPTASAfcDSKhHf7Y1dKZBZd0.jpg,La vuelta al mundo en 80 días,100.0
+movie,2024-02-28T20:54:51.990Z,1096197,False,True,,,/fSY6BYUZMObTIzPfRBlhuAb5lsd.jpg,Atrapados en el abismo,
+series,2024-02-28T18:06:24.168Z,1668,True,False,228.0,"{'seasonId': 10, 'episodeId': 17}",/rkKCSlr8OH5tbKEdgwtzvEiemrl.jpg,Friends,100.0
+series,2024-02-28T18:05:58.462Z,62705,False,False,285.0,"{'seasonId': 11, 'episodeId': 20}",/cSJrAFkxM97tXrUUmon4YASJAXQ.jpg,Casados a primera vista Australia,94.05940594059405
+series,2024-02-28T17:53:24.591Z,70523,True,True,26.0,"{'seasonId': 3, 'episodeId': 8}",/hRP7N2uI0pokxnkcMFONoOZnxbv.jpg,Dark,100.0
+series,2024-02-27T19:40:24.562Z,1338,True,True,1.0,"{'seasonId': 1, 'episodeId': 1}",/qYp8SX8PiJvFURcSwDGvV0o4DX0.jpg,Alerta Cobra,0.26246719160104987
+movie,2024-02-27T00:54:20.835Z,1072790,True,False,,,/gvpU4eMgDC6LpWLxnqGW3uMFDx3.jpg,Cualquiera menos tú,
+movie,2024-02-27T00:47:02.967Z,799155,True,True,,,/mJUZAEK6haKyxohs58ZOLqiUb9P.jpg,Misión Ataque,

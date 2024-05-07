@@ -1,0 +1,25 @@
+contentType,updatedAt,id,poster,title,hasReview,totalWatchedEpisodes,lastSeenEpisode,seen,userId
+movie,2024-04-28T05:27:46.156Z,24,/lfj709InbmljVqAXgUk2qjnujNN.jpg,Kill Bill: Volumen 1,False,,,,21
+movie,2024-04-26T19:38:54.074Z,268,/fpY5cNPIbKYpdBtukCMtBMMt1s3.jpg,Batman,False,,,,21
+movie,2024-04-26T19:28:04.516Z,1002644,/jireX9062do8ETnOxYcFcvse1fY.jpg,Spider,False,,,,21
+movie,2024-04-19T22:31:43.597Z,899112,/piA9ny345UyIMGp0lKYtPJ3RKCa.jpg,Noche de paz,False,,,,21
+movie,2024-03-22T14:13:56.755Z,122917,/6OiNSLcRKJsBLXwb6DEi6IQ0JFk.jpg,El hobbit: La batalla de los cinco ejércitos,False,,,,21
+movie,2024-03-13T13:57:06.482Z,393,/oEbYyyl3w2dptDZCfXr8NHEHFkl.jpg,Kill Bill: Volumen 2,False,,,,21
+series,2024-03-13T13:55:58.714Z,22974,/77c1TnNUMCGnHz9ZIApCmgoeQ3R.jpg,Umi Monogatari ~Anata ga Ite Kureta Koto~,False,1.0,"{'seasonId': 1, 'episodeId': 1}",8.333333333333332,21
+movie,2024-03-12T19:05:22.017Z,1001886,,Kill Bill Parody,False,,,,21
+series,2024-03-11T01:13:40.028Z,92783,/4ie82rXFa1rAJ9qTWoCvlljglLJ.jpg,She-Hulk: abogada Hulka,False,1.0,"{'seasonId': 1, 'episodeId': 5}",11.11111111111111,21
+series,2024-03-11T01:12:08.601Z,95557,/uCRZrXZNzzDijApmREUTFywhUmW.jpg,Invencible,False,8.0,"{'seasonId': 1, 'episodeId': 8}",50.0,21
+series,2024-03-11T21:48:19.430Z,84958,/53aonG0QS3ynbYuuwhPtyoOwTDD.jpg,Loki,False,1.0,"{'seasonId': 2, 'episodeId': 3}",8.333333333333332,22
+series,2024-03-11T13:42:25.762Z,37854,/6nyfkXDGngwY6PCW58n7CHQ2aMt.jpg,One Piece,False,1.0,"{'seasonId': 21, 'episodeId': 1020}",0.09049773755656108,23
+series,2024-03-10T18:52:11.652Z,1412,/gKG5QGz5Ngf8fgWpBsWtlg5L2SF.jpg,Arrow,False,170.0,"{'seasonId': 1, 'episodeId': 23}",100.0,23
+movie,2024-03-10T18:51:19.737Z,447362,/xGDbQI7Gtgurt9W5ez6Tim2lpS2.jpg,Toda una vida en un año,False,,,,23
+series,2024-03-03T18:14:04.362Z,71194,/1bOVzxyHALVrC93EDkiF2LESSTg.jpg,The King's Avatar,False,1.0,"{'seasonId': 2, 'episodeId': 3}",4.0,23
+series,2024-03-01T19:13:30.467Z,82452,/fNTCUwpN6c8vD2U36tQW2V9A0Nj.jpg,Avatar: La leyenda de Aang,False,8.0,"{'seasonId': 1, 'episodeId': 8}",100.0,23
+series,2024-02-28T20:55:13.688Z,96228,/e95fPTASAfcDSKhHf7Y1dKZBZd0.jpg,La vuelta al mundo en 80 días,False,8.0,"{'seasonId': 1, 'episodeId': 8}",100.0,23
+movie,2024-02-28T20:54:51.990Z,1096197,/fSY6BYUZMObTIzPfRBlhuAb5lsd.jpg,Atrapados en el abismo,False,,,,23
+series,2024-02-28T18:06:24.168Z,1668,/rkKCSlr8OH5tbKEdgwtzvEiemrl.jpg,Friends,False,228.0,"{'seasonId': 10, 'episodeId': 17}",100.0,23
+series,2024-02-28T18:05:58.462Z,62705,/cSJrAFkxM97tXrUUmon4YASJAXQ.jpg,Casados a primera vista Australia,False,285.0,"{'seasonId': 11, 'episodeId': 20}",94.05940594059405,23
+series,2024-02-28T17:53:24.591Z,70523,/hRP7N2uI0pokxnkcMFONoOZnxbv.jpg,Dark,False,26.0,"{'seasonId': 3, 'episodeId': 8}",100.0,23
+series,2024-03-13T16:20:24.203Z,84958,/53aonG0QS3ynbYuuwhPtyoOwTDD.jpg,Loki,False,1.0,"{'seasonId': 2, 'episodeId': 1}",8.333333333333332,24
+series,2024-03-03T18:07:16.735Z,2316,/5uwetbr0X8BPRy3Wmh63S9EhsiY.jpg,The Office,False,186.0,"{'seasonId': 9, 'episodeId': 23}",100.0,24
+series,2024-03-03T17:59:30.904Z,24876,,The Office,False,5.0,"{'seasonId': 1, 'episodeId': 5}",83.33333333333334,24

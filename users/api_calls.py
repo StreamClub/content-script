@@ -4,15 +4,19 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-capi_token = os.getenv("CAPI_TOKEN")
+CAPI_TOKEN = os.getenv("CAPI_TOKEN")
+REQUEST_TIMEOUT = float(os.getenv("REQUEST_TIMEOUT"))
 
-def get_page(userId, page):
-  url = f"https://capi-xf6o.onrender.com/seenContent/{userId}?page={page}&pageSize=10"
+def getSeenContentPage(page):
+  # TODO: Cuando se disponga del endpoint cambiar por la nueva url
+  url = f"https://capi-xf6o.onrender.com/seenContent/{page}?page={1}&pageSize=10"
+  #################################
+  
   headers = {
       "accept": "application/json",
-      "Authorization": f"Bearer {capi_token}"
+      "Authorization": f"Bearer {CAPI_TOKEN}"
   }
-  response = requests.get(url, headers=headers, timeout=(5,5))
+  response = requests.get(url, headers=headers, timeout=REQUEST_TIMEOUT)
   data = json.loads(response.text)
-  print(data)
-  return data['results'], data['totalPages']
+
+  return data['results'], data['results'] != []

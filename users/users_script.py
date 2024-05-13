@@ -4,27 +4,28 @@ import pandas as pd
 import sys
 from api_calls import getSeenContentPage
 
+def get_updated_DataFrame(dfSeenContent, userId, moviesIds, seriesIds):
+  dfMovies = pd.DataFrame( { 'contentId': moviesIds }, dtype=int )
+  dfMovies['userId'] = userId
+  dfMovies['category'] = 'movie'
+
+  dfSeries = pd.DataFrame( { 'contentId': seriesIds }, dtype=int )
+  dfSeries['userId'] = userId
+  dfSeries['category'] = 'series'
+
+  dfSeenContent = pd.concat([dfSeenContent, dfMovies, dfSeries], ignore_index=True)
+  return dfSeenContent
 
 def get_users():
   dfSeenContent = pd.DataFrame()
+  page = 1
   
-  # TODO: Cuando se disponga del endpoint cambiar el valor de page a 1
-  # page = 1
-  #################################
-  page = 21
-  
-  jsonContent, pageFound = getSeenContentPage(page)
+  userId, moviesIds, seriesIds, pageFound = getSeenContentPage(page)
   while (pageFound):
-    print(f'Página {page}...')
-    dfNewSeenContent = pd.DataFrame(jsonContent)
-    
-    # TODO: Cuando se disponga del endpoint eliminar esta línea
-    dfNewSeenContent['userId'] = page
-    #################################
-
-    dfSeenContent = pd.concat([dfSeenContent, dfNewSeenContent], ignore_index=True)
+    print(f'Procesando página {page}...')
+    dfSeenContent = get_updated_DataFrame(dfSeenContent, userId, moviesIds, seriesIds)
     page += 1
-    jsonContent, pageFound = getSeenContentPage(page)
+    userId, moviesIds, seriesIds, pageFound = getSeenContentPage(page)
 
   dfSeenContent.to_csv(f'users.csv', index=False, mode='w', header=True)
 

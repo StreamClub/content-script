@@ -5,12 +5,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 CAPI_TOKEN = os.getenv("CAPI_TOKEN")
+CAPI_BASE_URL = os.getenv("CAPI_BASE_URL")
 REQUEST_TIMEOUT = float(os.getenv("REQUEST_TIMEOUT"))
 
 def getSeenContentPage(page):
-  # TODO: Cuando se disponga del endpoint cambiar por la nueva url
-  url = f"https://capi-xf6o.onrender.com/seenContent/{page}?page={1}&pageSize=10"
-  #################################
+  url = f"{CAPI_BASE_URL}seenContent/?page={page}"
   
   headers = {
       "accept": "application/json",
@@ -19,4 +18,17 @@ def getSeenContentPage(page):
   response = requests.get(url, headers=headers, timeout=REQUEST_TIMEOUT)
   data = json.loads(response.text)
 
-  return data['results'], data['results'] != []
+  resultsArray = data['results']
+  userId = None
+  moviesIds = []
+  seriesIds = []
+  pageFound = resultsArray.__len__() != 0
+
+  if pageFound:
+    results = resultsArray[0]
+    userId = results['userId']
+    moviesIds = results['movies']
+    seriesIds = results['series']
+    pageFound = True
+
+  return userId, moviesIds, seriesIds, pageFound

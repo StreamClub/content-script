@@ -54,7 +54,7 @@ def connect_and_upload(type):
 
 if __name__ == "__main__":
   if len(sys.argv) != 2 or sys.argv[1] not in Type.__members__:
-      print("Use: python3 upload_recommendations.py (MMR|SSR|UMR|USR)")
+      print("Use: python3 upload_recos_to_rdb.py (MMR|SSR|UMR|USR)")
       sys.exit(1)
   
   type = Type[sys.argv[1]].value

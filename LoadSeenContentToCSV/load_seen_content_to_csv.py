@@ -42,6 +42,6 @@ def execute_and_time(callback):
 
 if __name__ == "__main__":
   if len(sys.argv) != 1:
-    print("Uso: python users_script.py")
+    print("Uso: python load_seen_content_to_csv.py")
     sys.exit(1)
   execute_and_time(get_users)

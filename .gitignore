@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 
 LoadSeenContentToCSV/users_seen_content.csv
+UploadRecosToRDB/*_recommendation.csv

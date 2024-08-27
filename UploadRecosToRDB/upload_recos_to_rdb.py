@@ -16,12 +16,16 @@ class Type(Enum):
     USR = 'user_series_recommendation'
 
 def insert_rows(rows, type, conn, cur):
+    # Eliminar duplicados dentro del lote
+    unique_rows = {int(row['id']): row['recommendations'] for row in rows}
+    values = [(id, rec) for id, rec in unique_rows.items()]
+    
     query = f"INSERT INTO {type} (id, recommendations) VALUES %s ON CONFLICT (id) DO UPDATE SET recommendations = EXCLUDED.recommendations"
-    values = [(int(row['id']), row['recommendations']) for row in rows]
     psycopg2.extras.execute_values(cur, query, values)
     conn.commit()
 
-def upload_recommendations(type, conn, cur, batch_size=1000):
+
+def upload_recommendations(type, conn, cur, batch_size=5000):
     with open(f'{type}.csv', 'r') as file:
         reader = csv.DictReader(file, delimiter=',')
         print(f"Started uploading {type}...")

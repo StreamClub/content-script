@@ -14,6 +14,8 @@ class Type(Enum):
     SSR = 'series_series_recommendation'
     UMR = 'user_movie_recommendation'
     USR = 'user_series_recommendation'
+    GMR = 'group_movie_recommendation'
+    GSR = 'group_series_recommendation'
 
 def insert_rows(rows, type, conn, cur):
     query = f"INSERT INTO {type} (id, recommendations) VALUES %s ON CONFLICT (id) DO UPDATE SET recommendations = EXCLUDED.recommendations"
@@ -62,7 +64,8 @@ def connect_and_upload(type):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2 or sys.argv[1] not in Type.__members__:
-        print("Use: python3 upload_recos_to_rdb.py (MMR|SSR|UMR|USR)")
+        print(sys.argv[1])
+        print("Use: python3 upload_recos_to_rdb.py (MMR|SSR|UMR|USR|GMR|GSR)")
         sys.exit(1)
     
     type = Type[sys.argv[1]].value

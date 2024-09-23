@@ -9,7 +9,7 @@ UAPI_BASE_URL = os.getenv("UAPI_BASE_URL")
 REQUEST_TIMEOUT = float(os.getenv("REQUEST_TIMEOUT"))
 
 def getAllGroups(page):
-  url = f"{UAPI_BASE_URL}groups/all?page={page}"
+  url = f"{UAPI_BASE_URL}groups/all?pageNumber={page}"
   
   headers = {
       "accept": "application/json",
